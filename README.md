@@ -6,7 +6,7 @@ We use $M_t$ notation to describe market state at time $t$. This is also referre
 
 The lowest order data which an analyzer has access to is **tick data**. Every tick defines the value (or price) of market at time $t$. We denote this by $Tick_t$. Therefore, $M_t$ could be defined as a series of tick data:
 
-$M_t :=\{...,Tick_{t-2}, Tick_{t-1}, Tick_t\}$
+$M_t :=\\{...,Tick_{t-2}, Tick_{t-1}, Tick_t\\}$
 
 One way to model market is by using **context functions**. A context function, in our definition, takes a bundle of market variables and provides a higher-order description of market. Context functions could have recursive nature. 
 In this definition, **indicators** are a subset of context functions.
@@ -14,9 +14,13 @@ In this definition, **indicators** are a subset of context functions.
 Therefore, OHLC model is a 4-dimensional, higher-order context function defined as below:
 
 $C_{ohlc}(M_t) = O_t, H_t, L_t, C_t$
+
 $O_t = Tick_{t-P}$
+
 $H_t = max(Tick_{t-P},...,Tick_t)$
+
 $L_t = min(Tick_{t-P},...,Tick_t)$
+
 $C_t = Tick_{t}$
  
 ## Indicator
