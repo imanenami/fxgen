@@ -58,9 +58,9 @@ In a perfect scenario, where $I(t)$ precisely predicts market at $t+T$, the abov
 As could be easily observed, our definition of predictability is itertwined with our notion of market, i.e. the context function, and how we define loss function. For example, if we define our context function to be the closing market price (**C** in OHLC model), L1 norm could be a perfectly good candidate for loss function. However, considering the case where our context function is an exponentially smoothed average of market prices, then perhaps we should revisit our definition of loss function and use a higher order norm.
     
 ## Range or Trend
-Markets are either ranging or trending. Understanding of range or trend status of market is crucial for any trading agent to be able to adjust its trading and risk management strategy. Obviously, in a trending market, following the old saying of *"Trend is Your Friend"* is the optimal strategy and one should not take positions against the trend. On the other hand, in a range market, *mean-reversion strategies* often provide the best results. 
+Markets are either ranging or trending. To understand the ranging or trending status of market is crucial for any trading agent to be able to adjust its trading and risk management strategy. Obviously, in a trending market, following the old saying of *"Trend is Your Friend"* is the optimal strategy and one should not take positions against the trend. On the other hand, in a range market, *mean-reversion strategies* often provide the best results. 
 
-We observer following principles in our definition of range/trend:
+We observe following principles in our definition and modelling of range/trend:
 
  1. Range or trend should be modeled as a *continuous spectrum* rather than two discrete state.
  2. Range or trend is modeled against a time granularity.
