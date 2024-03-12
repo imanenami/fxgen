@@ -43,15 +43,15 @@ Predictability evaluates how robust a lagging indicator could perform as a leadi
 
 To define predictability in this setup, we have an indicator $I$, a context function $C$ and a look-forward period $T$ where we expect our indicator to predict. 
 
-Also, we define function $P_I$ as prediction function of indictaor $I$, formally defined as $P_I(i_t, T) -> C_{t+T}$. This function predicts market at T periods in the future using indicator value a time $t$. 
+Also, we define function $P_{I,C}$ as prediction function of indictaor $I$ under context function $C$, formally defined as $P_{I,C}(i_t, T) -> predictedC_{t+T}$. This function predicts market at T periods in the future using indicator value a time $t$. 
 
 Predictability would be defined as $Pred_{I,C}(t, t+T)$. Predictability measures deviation of predicted price using $P_I$ from actual price at T period of times in the future. Predictability is a **loss function** in nature and any viable loss function used in machine learning could be used to measure predictability.
 
-$Pred_{I,C}(t, t+T) = Loss[P_I(I(t), T), C(t+T)]$
+$Pred_{I,C}(t, t+T) = Loss[P_{I,C}(I(t), T), C(t+T)]$
 
 One naive definition could be:
 
-$Pred_{I,C}(t, t+T) = 1 - |P_I(I(t), T) - C(t+T)| / C(t+T)$
+$Pred_{I,C}(t, t+T) = 1 - |P_{I,C}(I(t), T) - C(t+T)| / C(t+T)$
 
 In a perfect scenario, where $I(t)$ precisely predicts market at $t+T$, the above equation would equal to 1. any deviation of $I(t)$ from $C(t+T)$ would result in predictability to become less than one.
 
