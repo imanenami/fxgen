@@ -9,6 +9,7 @@ The lowest order data which an analyzer has access to is **tick data**. Every ti
 $M_t :=\\{...,Tick_{t-2}, Tick_{t-1}, Tick_t\\}$
 
 One way to model market is by using **context functions**. A context function, in our definition, takes a bundle of market variables and provides a higher-order description of market. Context functions could have recursive nature. 
+
 In this definition, **indicators** are a subset of context functions.
 
 Therefore, OHLC model is a 4-dimensional, higher-order context function defined as below:
@@ -38,7 +39,23 @@ Noise could be viewed upon either as a primary or secondary variable in our anal
 As a **primary** variable, we evaluate market noise irrespective of any context. Therefore, we would have a noise function $N(t)$ which measures market noise at time $t$ independent of other market variables.
 However, as a **secondary** variable, we take into account *market context* in our evaluation of noise. So the noise function becomes $N(t, C(M_t))$ where $C(x)$ is a context function and $M_t$ is a bundle of market variables at time $t$.
 ## Predictability 
-Predictability evaluates how robust a lagging indicator could perform as a leading indicator. In our market model, when **noise** is 0, any lagging indicator could perfectly predict future state and therefore, predictability is 1. 
+Predictability evaluates how robust a lagging indicator could perform as a leading indicator predicting a future market state. In our market model, when **noise** is 0, any lagging indicator could perfectly predict future state and therefore, predictability is 1. 
+
+To define predictability in this setup, we have an indicator $I$, a context function $C$ and a look-forward period $T$ where we expect our indicator to predict. 
+
+Also, we define function $P_I$ as prediction function of indictaor $I$, formally defined as $P_I(i_t, T) -> C_{t+T}$. This function predicts market at T periods in the future using indicator value a time $t$. 
+
+Predictability would be defined as $Pred_{I,C}(t, t+T)$. Predictability measures deviation of predicted price using $P_I$ from actual price at T period of times in the future. Predictability is a **loss function** in nature and any viable loss function used in machine learning could be used to measure predictability.
+
+$Pred_{I,C}(t, t+T) = Loss[P_I(I(t), T), C(t+T)]$
+
+One naive definition could be:
+
+$Pred_{I,C}(t, t+T) = 1 - |P_I(I(t), T) - C(t+T)| / C(t+T)$
+
+In a perfect scenario, where $I(t)$ precisely predicts market at $t+T$, the above equation would equal to 1. any deviation of $I(t)$ from $C(t+T)$ would result in predictability to become less than one.
+
+As could be easily observed, our definition of predictability is itertwined with our notion of market (and the context function). 
     
 ## Range or Trend
 Principles:
