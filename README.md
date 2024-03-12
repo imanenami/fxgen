@@ -45,17 +45,17 @@ To define predictability in this setup, we have an indicator $I$, a context func
 
 Also, we define function $P_{I,C}$ as prediction function of indictaor $I$ under context function $C$, formally defined as $P_{I,C}(t, T) -> predictedC_{t+T}$. This function predicts market at T periods in the future using indicator value a time $t$. 
 
-Predictability would be defined as $Pred_{I,C}(t, t+T)$. Predictability measures deviation of predicted price using $P_I$ from actual price at T period of times in the future. Predictability is a **loss function** in nature and any viable loss function used in machine learning could be used to measure predictability.
+Predictability would be defined as $Pred_{I,C}(t, t+T)$. Predictability measures deviation of predicted price using $P_I$ from actual price at T period of times in the future. Predictability is a **loss function** in nature and any viable loss function used in machine learning could be utilized to measure predictability.
 
 $Pred_{I,C}(t, t+T) = Loss[P_{I,C}(t, T), C(t+T)]$
 
-One naive definition could be:
+One naive definition could be L1 norm:
 
 $Pred_{I,C}(t, t+T) = 1 - |P_{I,C}(t, T) - C(t+T)| / C(t+T)$
 
 In a perfect scenario, where $I(t)$ precisely predicts market at $t+T$, the above equation would equal to 1. any deviation of $I(t)$ from $C(t+T)$ would result in predictability to become less than one.
 
-As could be easily observed, our definition of predictability is itertwined with our notion of market (and the context function). 
+As could be easily observed, our definition of predictability is itertwined with our notion of market (and the context function) and how we define loss function. For example, if we define our context function to be the closing market price (**C** in OHLC model), L1 norm could be a perfectly good candidate for loss function. However, considering the case where our context function is an exponentially smoothed average of market prices, then perhaps we should revisit our definition of loss function and use a higher order norm.
     
 ## Range or Trend
 Principles:
